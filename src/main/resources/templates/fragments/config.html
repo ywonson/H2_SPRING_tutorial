@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<!--Thymeleaf, ConfigFragment 선언-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="ConfigFragment">
+    <head>
+        <!--Common Head-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport"
+              content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0"/>
+        <title></title>
+    
+        <!--Common JS-->
+        
+        <!--Common CSS -->
+        <link th:inline="css" th:href="@{/lib/jquery-ui.css}" rel="stylesheet"/>
+        <!-- mine -->
+           <style>
+        /* CSS for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+        	
+</head>
+</html>

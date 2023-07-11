@@ -1,0 +1,95 @@
+<!-- dynamicContent.html -->
+<div class="dynamic-content">
+    <table>
+        <tr>
+            <th>Group</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>ID</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.groupname}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.user_id}"></td>
+            <td>
+                <button class="edit-button" th:attr="data-user-id=${user.user_id}">Edit</button>
+            </td>
+        </tr>
+    </table>
+
+    <!-- ui-dialog -->
+    <div id="dialog" title="Dialog Title">
+        <p>유저 삭제를 원하신다면 `삭제`를 누르세요.</p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#dialog").dialog({
+                autoOpen: false,
+                width: 400,
+                buttons: [
+                    {
+                        text: "Cancel",
+                        click: function() {
+                            $(this).dialog("close");
+                        }
+                    },
+                    {
+                        text: "삭제",
+                        click: function() {
+                            var userId = $(this).attr('data-user-id');
+                            console.log('Delete User ID:', userId);
+
+                            // Make an AJAX request to delete the user
+                            $.ajax({
+                                url: '/deleteUser',
+                                method: 'POST',
+                                data: {
+                                    user_id: userId
+                                },
+                                success: function(response) {
+                                    console.log('Delete success:', response);
+                                   		$.ajax({
+							                    url: '/getUser', // URL mapping to your Spring MVC controller
+							                    method: 'GET',
+							                    success: function(data) {
+							                        // Update the dynamic content with the fetched HTML
+							                        $('#dynamicContent').html(data);
+							                    }
+							                });
+                                    // Perform any necessary actions on success (e.g., refresh the page or update the UI)
+                                },
+                                error: function(xhr, status, error) {
+                                    console.log('Delete error:', error);
+                                    // Perform any necessary error handling (e.g., show an error message)
+                                }
+                            });
+                            
+
+                     
+
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            // Handle button click event for editing data
+            $('.edit-button').click(function() {
+                // Open the dialog
+                $("#dialog").dialog("open");
+
+                // Retrieve the user ID from the data attribute of the edit button
+                var userId = $(this).attr('data-user-id');
+                console.log('User ID:', userId);
+
+                // Set the user ID as the data attribute of the dialog
+                $("#dialog").attr('data-user-id', userId);
+
+                // Update the dialog content or perform any other necessary operations
+            });
+        });
+    </script>
+</div>

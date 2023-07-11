@@ -1,0 +1,20 @@
+<!-- dynamicContent.html -->
+<div class="dynamic-content">
+    <h1>Board Page</h1>
+    <table  class="cool-table">
+        <tr>
+            <th>username</th>
+            <th>groups</th>
+            <th>content</th>
+            <th>Created Date</th>
+            <th>Modified Date</th>
+        </tr>
+        <tr th:each="board : ${boards}">
+            <td th:text="${board.username}"></td>
+            <td th:text="${board.groups}"></td>
+            <td th:text="${board.content}"></td>
+            <td th:text="${board.created_date}"></td>
+            <td th:text="${board.modified_date}"></td>
+        </tr>
+    </table>
+</div>

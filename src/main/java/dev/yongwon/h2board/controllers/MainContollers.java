@@ -16,4 +16,10 @@ public class MainContollers {
 	public String test() {
 		return "main";
 	}
+	
+	@RequestMapping("/user")
+	public String content() {
+		return "user";
+	}
+	
 }
