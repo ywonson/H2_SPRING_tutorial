@@ -51,12 +51,25 @@
 <body>
 	<header th:replace="~{fragments/header :: HeaderFragment}"></header>
 
-<h1>Welcome to jQuery UI!</h1>
+<h1>게시판 페이지</h1>
 
 <div id="dynamicContent"></div>
 
 <!-- Add a button to trigger content change -->
-<button id="changeContentButton">Change Content</button>
+<button id="changeContentButton">새로고침</button>
+
+<form id="boardDataForm">
+    <label for="username">이름:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="content">내용:</label>
+    <input type="text" id="content" name="content" required>
+
+    <button type="submit">게시글 작성</button>
+</form>
+		
+
+
 
 
         <footer th:replace="~{fragments/footer :: FooterFragment}"></footer>
@@ -183,6 +196,37 @@ $( "#dialog-link, #icons li" ).hover(
                 // Call the fetchData function when the button is clicked
                 fetchData();
             });
+            
+                        // Function to handle form submission
+		    $('#boardDataForm').submit(function(event) {
+		        event.preventDefault();
+		
+		        // Get the input values
+		        var username = $('#username').val();
+		        var content = $('#content').val();
+		
+		        // Make an AJAX request to insert user data
+		        $.ajax({
+		            url: '/addBoard', // URL mapping to your Spring MVC controller for inserting user data
+		            method: 'POST',
+		            data: {
+		                username: username,
+		                content: content
+		            },
+		            success: function() {
+		                // Fetch data again after inserting
+		                fetchData();
+		
+		                // Reset the form
+		                $('#userDataForm')[0].reset();
+		            },
+		            error: function(xhr, status, error) {
+		                // Show alert with the error message
+		                alert('Error: ' + error);
+		            }
+		        });
+		    });
+            
         });
 
 </script>

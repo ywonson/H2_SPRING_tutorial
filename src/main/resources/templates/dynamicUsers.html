@@ -20,8 +20,11 @@
     </table>
 
     <!-- ui-dialog -->
-    <div id="dialog" title="Dialog Title">
+    <div id="dialog" title="수정">
         <p>유저 삭제를 원하신다면 `삭제`를 누르세요.</p>
+    </div>
+	<div id="dialog_g" title="그룹추가">
+        <p>원하시는 그룹을 선택하세요</p>
     </div>
 
     <script>
@@ -34,6 +37,13 @@
                         text: "Cancel",
                         click: function() {
                             $(this).dialog("close");
+                        }
+                    },
+						{
+                        text: "그룹추가",
+                        click: function() {
+                            $(this).dialog("close");
+                            $("#dialog_g").dialog("open");
                         }
                     },
                     {
@@ -66,10 +76,25 @@
                                     // Perform any necessary error handling (e.g., show an error message)
                                 }
                             });
-                            
-
-                     
-
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+            
+           $("#dialog_g").dialog({
+                autoOpen: false,
+                width: 400,
+                buttons: [
+						{
+                        text: "Cancel",
+                        click: function() {
+                            $(this).dialog("close");
+                        }
+                    },
+                    {
+                        text: "Cancel",
+                        click: function() {
                             $(this).dialog("close");
                         }
                     }
@@ -88,8 +113,10 @@
                 // Set the user ID as the data attribute of the dialog
                 $("#dialog").attr('data-user-id', userId);
 
-                // Update the dialog content or perform any other necessary operations
+               
             });
+            
+            
         });
     </script>
 </div>

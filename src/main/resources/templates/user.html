@@ -55,21 +55,21 @@
 <body>
 	<header th:replace="~{fragments/header :: HeaderFragment}"></header>
 
-<h1>Welcome to jQuery UI!</h1>
+<h1>사용자 정보 페이지</h1>
 
 <div id="dynamicContent"></div>
 
 <!-- Add a button to trigger content change -->
-<button id="changeContentButton">Change Content</button>
+<button id="changeContentButton">새로고침</button>
 
 <form id="userDataForm">
-    <label for="username">Username:</label>
+    <label for="username">이름:</label>
     <input type="text" id="username" name="username" required>
 
-    <label for="email">Email:</label>
+    <label for="email">이메일:</label>
     <input type="email" id="email" name="email" required>
 
-    <button type="submit">Add User</button>
+    <button type="submit">유저 추가</button>
 </form>
 		
 

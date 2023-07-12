@@ -1,6 +1,5 @@
 <!-- dynamicContent.html -->
 <div class="dynamic-content">
-    <h1>Board Page</h1>
     <table  class="cool-table">
         <tr>
             <th>username</th>
@@ -8,7 +7,7 @@
             <th>content</th>
             <th>Created Date</th>
             <th>Modified Date</th>
-        </tr>
+        </tr>	
         <tr th:each="board : ${boards}">
             <td th:text="${board.username}"></td>
             <td th:text="${board.groups}"></td>
